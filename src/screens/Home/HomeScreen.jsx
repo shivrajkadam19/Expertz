@@ -1,9 +1,21 @@
 import React from 'react'
-import { Text } from 'react-native'
+import ImageCarousel from '../../components/ImageCarousel'
+import HeaderSearchComponent from '../../components/HeaderSearchComponent'
+import { Text, View, Button, ScrollView, Image, TouchableOpacity, Alert } from 'react-native'
+import Title from '../../components/Title'
+const HomeScreen = ({navigation}) => {
 
-const HomeScreen = () => {
     return (
-        <Text>Heeee</Text>
+        <ScrollView>
+            <HeaderSearchComponent />
+            <ImageCarousel />
+            <View style={{ paddingLeft: 20 }}>
+                <Title variant={"titleLarge"} >
+                    Our Services
+                </Title>
+            </View>
+
+        </ScrollView>
     )
 }
 

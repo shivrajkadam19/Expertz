@@ -3,7 +3,7 @@ import { Text } from 'react-native'
 
 const VehicleScreen = () => {
   return (
-    <Text>bkhsbk</Text>
+    <Text>Vehicle Screen</Text>
   )
 }
 
