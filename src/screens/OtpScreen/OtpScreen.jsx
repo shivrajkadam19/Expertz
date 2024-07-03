@@ -68,8 +68,9 @@ const OtpScreen = ({ navigation }) => {
       {isLoading && <ActivityIndicator animating={true} color="#4CAF50" />}
       <Button
         mode="contained"
-        onPress={handleResendOTP}
-        disabled={timer > 0 || isLoading}
+        // onPress={handleResendOTP}
+        onPress={() => navigation.navigate('Register')}
+        // disabled={timer > 0 || isLoading}
         style={styles.resendButton}
         contentStyle={styles.buttonContent}
       >

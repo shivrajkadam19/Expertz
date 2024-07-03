@@ -15,7 +15,7 @@ const Home = ({ navigation }) => {
     setTimeout(() => {
       setIsLoggedIn(true);
     });
-  }, [2000]);
+  }, [10000]);
 
   return (
     <HStack.Navigator screenOptions={{ headerShown: false }}>
