@@ -2,10 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, Text, TextInput } from 'react-native';
 import { Button, ActivityIndicator, HelperText } from 'react-native-paper';
 
-const OtpScreen = ({ navigation }) => {
+const OtpScreen = ({ route, navigation }) => {
   const [otp, setOtp] = useState(['', '', '', '']);
   const [timer, setTimer] = useState(120);
   const [isLoading, setIsLoading] = useState(false);
+  const {phoneNo} = route.params 
+  const [error, setError] = useState('');
 
   const textInputs = Array(4).fill(null).map(() => useRef(null));
 
@@ -44,7 +46,7 @@ const OtpScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.title}>Enter OTP</Text>
       <Text style={styles.instruction}>
-        Enter 4 digit OTP sent to your mobile number 7721031161
+        Enter 4 digit OTP sent to your mobile number {phoneNo}
       </Text>
       <View style={styles.otpContainer}>
         {Array(4).fill('').map((_, index) => (
@@ -62,19 +64,26 @@ const OtpScreen = ({ navigation }) => {
           />
         ))}
       </View>
+      <Text>{error}</Text>
       <HelperText type="info" style={styles.resendText}>
         Resend OTP in: {timer} seconds
       </HelperText>
       {isLoading && <ActivityIndicator animating={true} color="#4CAF50" />}
       <Button
-        mode="contained"
-        // onPress={handleResendOTP}
-        onPress={() => navigation.navigate('Register')}
-        // disabled={timer > 0 || isLoading}
-        style={styles.resendButton}
+        onPress={handleResendOTP}
+        disabled={timer > 0 || isLoading}
+        textColor='blue'
         contentStyle={styles.buttonContent}
       >
         Resend OTP
+      </Button>
+      <Button
+        mode="contained"
+        onPress={() => navigation.navigate('Register')}
+        style={styles.resendButton}
+        contentStyle={styles.buttonContent}
+      >
+        Verify OTP
       </Button>
     </View>
   );
@@ -122,7 +131,7 @@ const styles = StyleSheet.create({
   },
   resendButton: {
     backgroundColor: '#4CAF50',
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
   },
   buttonContent: {
     height: 45,

@@ -1,30 +1,37 @@
 import React from 'react';
-import { View, StyleSheet, Text, TextInput, Button } from 'react-native';
-import { Provider as PaperProvider } from 'react-native-paper';
+import { View, StyleSheet, Text, TextInput } from 'react-native';
+import { Button } from 'react-native-paper';
+import Title from '../../components/Title';
 
-const RegisterScreen = ({navigation}) =>{
+const RegisterScreen = ({ navigation }) => {
   return (
-    <PaperProvider>
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome</Text>
-        <Text style={styles.subtitle}>Welcome to Hozzo, please register to continue</Text>
-        <TextInput 
-          style={styles.input}
-          placeholder="Your name"
-        />
-        <TextInput 
-          style={styles.input}
-          placeholder="Email (Optional)"
-        />
-        <Button 
-          title="Complete"
-          onPress={()=>navigation.replace('Home')}
-          color="#8BC34A"
-        />
+    <View style={styles.container}>
+      <Title variant={"displayMedium"}>
+        Welcome
+      </Title>
+      <Text style={styles.subtitle}>Welcome to Expertz, please register to continue</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Your name"
+        autoFocus={true}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Email (Optional)"
+      />
+      <Button
+        onPress={() => navigation.replace('Home')}
+        style={styles.completeButton}
+        contentStyle={styles.contentStyle}
+        textColor='white'
+      >
+        Complete
+      </Button>
+      <View style={styles.footerContainer}>
         <Text style={styles.footer}>By continuing you agree to our Terms of Service and Privacy Policy</Text>
-        <Text style={styles.copyright}>Copyright © 2023 Hozzo.</Text>
+        <Text style={styles.copyright}>Copyright © 2023 Expertz.</Text>
       </View>
-    </PaperProvider>
+    </View>
   );
 }
 
@@ -32,24 +39,17 @@ export default RegisterScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent:'flex-start',
+    paddingVertical:50,
     padding: 20,
-    backgroundColor: '#F3EDF7'
-  },
-  welcome: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10
   },
   subtitle: {
     fontSize: 16,
     color: '#6c757d',
-    textAlign: 'center',
     marginBottom: 20
   },
   input: {
-    height: 40,
+    height: 50,
     width: '100%',
     borderColor: '#cccccc',
     borderWidth: 1,
@@ -57,12 +57,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 10
   },
-  button: {
-    backgroundColor: '#8BC34A',
-    width: '100%',
-    padding: 10,
-    alignItems: 'center',
-    borderRadius: 5
+  completeButton: {
+    backgroundColor: '#4CAF50',
+    paddingHorizontal: 20
+  },
+  buttonContent: {
+    height: 45,
   },
   buttonText: {
     color: 'white',
@@ -71,13 +71,18 @@ const styles = StyleSheet.create({
   footer: {
     fontSize: 12,
     color: '#6c757d',
-    textAlign: 'center',
-    marginTop: 20
+    marginTop: 20,
+    textAlign:'center'
   },
   copyright: {
     fontSize: 12,
     color: '#6c757d',
-    textAlign: 'center',
-    marginTop: 5
+    marginTop: 5,
+    textAlign:'center'
+  },
+  footerContainer: {
+    position: 'absolute',
+    bottom: 20,
+    alignSelf:'center'
   }
 });

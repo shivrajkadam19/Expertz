@@ -9,13 +9,13 @@ const Stack = createNativeStackNavigator();
 const HStack = createNativeStackNavigator();
 
 const Home = ({ navigation }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoggedIn(true);
-    });
-  }, [10000]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsLoggedIn(true);
+  //   });
+  // });
 
   return (
     <HStack.Navigator screenOptions={{ headerShown: false }}>
@@ -33,6 +33,7 @@ const AppNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>

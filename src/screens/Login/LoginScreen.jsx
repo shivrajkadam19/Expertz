@@ -7,11 +7,11 @@ import Title from '../../components/Title';
 const LoginScreen = ({ navigation }) => {
   const [mobile, setMobile] = useState('');
   const [loading, setLoading] = useState(false);
-  // const [] = 
+  const [error, setError] = useState('')
 
   const handleSendOTP = async () => {
     if (mobile.length !== 10) {
-      alert('Please enter a valid 10-digit mobile number');
+      setError('Please enter a valid 10-digit mobile number');
       return;
     }
 
@@ -23,7 +23,7 @@ const LoginScreen = ({ navigation }) => {
         phoneNo: `+91${mobile}`,
       });
       console.log(response.data);
-      alert('OTP sent successfully');
+      // alert('OTP sent successfully');
       navigation.navigate('OtpScreen', { phoneNo: mobile });
     } catch (error) {
       console.error(error);
@@ -36,7 +36,7 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View>
-        <Title variant={"displaySmall"} >
+        <Title variant={"displayMedium"} >
           Login
         </Title>
         <Title variant={"labelLarge"}>Enter your mobile number to continue</Title>
@@ -57,6 +57,7 @@ const LoginScreen = ({ navigation }) => {
           placeholder='Ex. 1234567890'
         />
       </View>
+      <Text style={{color:'red'}}>{error}</Text>
       <Text style={styles.label}>{mobile.length}/10</Text>
       <Button
         mode="contained"
@@ -85,7 +86,8 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical:50,
     justifyContent: 'flex-start',
     backgroundColor: '#f8f8f8',
   },
